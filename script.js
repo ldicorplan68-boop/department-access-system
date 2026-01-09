@@ -518,7 +518,7 @@ class LoginApp {
         }
 
         if (!SecurityUtils.isValidPassword(password)) {
-            UIManager.showError('Password must be at least 8 characters long.');
+            UIManager.showError('Password must be at least 8 characters long with uppercase, lowercase, and numbers.');
             return;
         }
 
