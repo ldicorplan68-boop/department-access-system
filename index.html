@@ -37,8 +37,8 @@
                     name="password"
                     required
                     autocomplete="current-password"
-                    minlength="8"
-                    title="Password must be at least 8 characters long"
+                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                    title="Password must be at least 8 characters with uppercase, lowercase, and numbers"
                 >
             </div>
 
