@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Access System - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Department Access System</h1>
+            <p>Secure Login Portal</p>
+        </div>
+
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                    autocomplete="username"
+                    maxlength="50"
+                    pattern="[a-zA-Z0-9._-]{3,50}"
+                    title="Username must be 3-50 characters and contain only letters, numbers, dots, underscores, or hyphens"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                    minlength="8"
+                    title="Password must be at least 8 characters long"
+                >
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <span class="checkmark"></span>
+                    Remember me
+                </label>
+            </div>
+
+            <button type="submit" id="loginButton" class="login-button">
+                <span class="button-text">Sign In</span>
+                <div class="spinner" id="loadingSpinner"></div>
+            </button>
+        </form>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <div class="login-footer">
+            <p>Authorized personnel only. All access is monitored and logged.</p>
+        </div>
+    </div>
+
+    <!-- Security Information Modal -->
+    <div id="securityModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Security Notice</h2>
+            <p>This system implements enterprise-grade security measures:</p>
+            <ul>
+                <li>🔐 Passwords are hashed with SHA-256 and salt</li>
+                <li>🛡️ Session-based authentication with secure tokens</li>
+                <li>🚫 Rate limiting prevents brute-force attacks</li>
+                <li>📊 All login attempts are logged for security auditing</li>
+                <li>⏰ Automatic session expiry for enhanced security</li>
+            </ul>
+            <p>By logging in, you agree to comply with company security policies.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

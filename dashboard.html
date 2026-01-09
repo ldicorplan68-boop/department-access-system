@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Access System - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="spinner-large"></div>
+            <p>Validating session...</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1>Department Access System</h1>
+                <div class="user-info">
+                    <span class="welcome-text">Welcome, <span id="userName"></span></span>
+                    <span class="department-badge" id="departmentBadge"></span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="session-info">
+                    <span class="session-timer" id="sessionTimer"></span>
+                    <button id="logoutButton" class="logout-button">
+                        <span class="button-text">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+            <button class="nav-tab active" data-tab="overview">
+                <span class="nav-icon">📊</span>
+                Overview
+            </button>
+            <button class="nav-tab" data-tab="department">
+                <span class="nav-icon">🏢</span>
+                Department Data
+            </button>
+            <button class="nav-tab" data-tab="profile">
+                <span class="nav-icon">👤</span>
+                Profile
+            </button>
+            <button class="nav-tab" data-tab="security">
+                <span class="nav-icon">🔒</span>
+                Security
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <!-- Overview Tab -->
+            <div id="overviewTab" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🕒</div>
+                        <div class="stat-content">
+                            <h3>Session Time</h3>
+                            <p id="sessionTime">00:00:00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <h3>Last Login</h3>
+                            <p id="lastLogin">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔐</div>
+                        <div class="stat-content">
+                            <h3>Security Status</h3>
+                            <p id="securityStatus">Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3>Access Level</h3>
+                            <p id="accessLevel">Department</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div id="activityFeed" class="activity-feed">
+                        <div class="activity-item">
+                            <span class="activity-icon">🔓</span>
+                            <div class="activity-content">
+                                <p>Successfully logged in</p>
+                                <span class="activity-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department Tab -->
+            <div id="departmentTab" class="tab-content">
+                <div class="department-header">
+                    <h2 id="departmentTitle"></h2>
+                    <p>Access your department-specific resources and data</p>
+                </div>
+
+                <div class="department-content">
+                    <!-- IT Department -->
+                    <div id="itContent" class="department-section" style="display: none;">
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <h3>Server Management</h3>
+                                <p>Monitor and manage department servers</p>
+                                <button class="resource-button">Access Servers</button>
+                            </div>
+                            <div class="resource-card">
+                                <h3>Network Tools</h3>
+                                <p>Network monitoring and diagnostics</p>
+                                <button class="resource-button">Open Tools</button>
+                            </div>
+                            <div class="resource-card">
+                                <h3>Security Logs</h3>
+                                <p>View system security events</p>
+                                <button class="resource-button">View Logs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HR Department -->
+                    <div id="hrContent" class="department-section" style="display: none;">
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <h3>Employee Records</h3>
+                                <p>Manage employee information</p>
+                                <button class="resource-button">View Records</button>
+                            </div>
+                            <div class="resource-card">
+                                <h3>Payroll System</h3>
+                                <p>Access payroll management tools</p>
+                                <button class="resource-button">Open Payroll</button>
+                            </div>
+                            <div class="resource-card">
+                                <h3>Recruitment</h3>
+                                <p>Manage job applications and interviews</p>
+                                <button class="resource-button">View Applications</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finance Department -->
+                    <div id="financeContent" class="department-section" style="display: none;">
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <h3>Financial Reports</h3>
+                                <p>View quarterly and annual reports</p>
+                                <button class="resource-button">View Reports</button>
+                            </div>
+                            <div class="resource-card">
+                                <h3>Budget Planning</h3>
+                                <p>Manage department budgets</p>
+                                <button class="resource-button">Open Budget</button>
+                            </div>
+                            <div class="resource-card">
+                                <h3>Expense Tracking</h3>
+                                <p>Monitor and approve expenses</p>
+                                <button class="resource-button">Track Expenses</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Access Denied Message -->
+                    <div id="accessDenied" class="access-denied" style="display: none;">
+                        <div class="access-denied-content">
+                            <span class="access-icon">🚫</span>
+                            <h3>Access Restricted</h3>
+                            <p>You don't have permission to access this department's resources.</p>
+                            <p>If you believe this is an error, please contact your system administrator.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="tab-content">
+                <div class="profile-section">
+                    <h2>User Profile</h2>
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <span id="profileInitials"></span>
+                        </div>
+                        <div class="profile-details">
+                            <h3 id="profileName"></h3>
+                            <p id="profileDepartment"></p>
+                            <p id="profileStatus">Active Account</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="action-button secondary" id="changePasswordBtn">
+                            Change Password
+                        </button>
+                        <button class="action-button secondary" id="viewActivityBtn">
+                            View Login History
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Tab -->
+            <div id="securityTab" class="tab-content">
+                <div class="security-section">
+                    <h2>Security Information</h2>
+
+                    <div class="security-status">
+                        <h3>Session Information</h3>
+                        <div class="security-item">
+                            <span class="security-label">Session Expires:</span>
+                            <span id="sessionExpiry"></span>
+                        </div>
+                        <div class="security-item">
+                            <span class="security-label">IP Address:</span>
+                            <span id="clientIP">Loading...</span>
+                        </div>
+                        <div class="security-item">
+                            <span class="security-label">Browser:</span>
+                            <span id="userAgent"></span>
+                        </div>
+                    </div>
+
+                    <div class="security-tips">
+                        <h3>Security Best Practices</h3>
+                        <ul class="tips-list">
+                            <li>Never share your login credentials</li>
+                            <li>Log out when you're done with your session</li>
+                            <li>Use a strong, unique password</li>
+                            <li>Be cautious of phishing attempts</li>
+                            <li>Report any suspicious activity</li>
+                        </ul>
+                    </div>
+
+                    <div class="security-actions">
+                        <button class="action-button danger" id="forceLogoutBtn">
+                            Force Logout from All Devices
+                        </button>
+                        <button class="action-button warning" id="reportIssueBtn">
+                            Report Security Issue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Session Expiry Warning Modal -->
+    <div id="expiryModal" class="modal">
+        <div class="modal-content">
+            <h2>Session Expiring Soon</h2>
+            <p>Your session will expire in <span id="expiryTime"></span> minutes.</p>
+            <p>Would you like to extend your session?</p>
+            <div class="modal-actions">
+                <button id="extendSessionBtn" class="action-button primary">Extend Session</button>
+                <button id="logoutNowBtn" class="action-button secondary">Logout Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
